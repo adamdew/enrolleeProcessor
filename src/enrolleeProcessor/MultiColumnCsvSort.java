@@ -44,7 +44,6 @@ public class MultiColumnCsvSort
             new InputStreamReader(inputStream));
         List<List<String>> lines = new ArrayList<List<String>>();
 
-        // Skip header
         String line;
 
         while (true)

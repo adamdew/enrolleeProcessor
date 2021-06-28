@@ -1,14 +1,6 @@
-## Getting Started
+## Hi Availity Crew!
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Here is my CSV reader exercise. I have a default input csv in the project root so feel free to put in your own csv data in that file. The individual insurance provider files will also appear there when you run the project. 
 
-## Folder Structure
+Being new to Java I did not realize that it is somewhat complicated to do a sort based on multiple values in an ArrayList of custom objects, in this case I'm referring to my ArrayList of Enrollees. If I had a bit more time, that's what I'd go back in and fix first!
 
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).

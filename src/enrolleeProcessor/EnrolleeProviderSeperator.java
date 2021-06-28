@@ -82,10 +82,10 @@ public class EnrolleeProviderSeperator {
             pw.close();
 
            
-            //do first sort by userID first, then by version so that we can dedupe by userID
+            //do first sort by userID(index 0), then by version(index 3) so that we can dedupe by userID in a special loop
             new MultiColumnCsvSort(providerFileName, true, 0, 3);
             
-            //finished deduping now, do final sort by last name, first name
+            //finished deduping now, do final sort by last name(index 2), then by first name(index 1)
             new MultiColumnCsvSort(providerFileName, false, 2, 1);
 
                 

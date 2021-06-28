@@ -19,18 +19,22 @@ public class MultiColumnCsvSort
 {
     private static final String COLUMN_SEPARATOR = ",";
 
-    public MultiColumnCsvSort(String fileName, int... indices) throws Exception
+    public MultiColumnCsvSort(String fileName, Boolean deDupeOnUserID, int... indices) throws Exception
     {
         InputStream inputStream = new FileInputStream(fileName);
         List<List<String>> lines = readCsv(inputStream);
 
-        // Create a comparator that sorts primarily by column 0,
-        // and if these values are equal, by column 2
         Comparator<List<String>> comparator = createComparator(indices);
         Collections.sort(lines, comparator);
 
         OutputStream outputStream = new FileOutputStream(fileName);
-        writeCsv(lines, outputStream);        
+
+        if(deDupeOnUserID == true){
+            writeDeDupedCsv(lines, outputStream);     
+        } else {
+            writeCsv(lines, outputStream);
+        }
+           
     }
 
     private static List<List<String>> readCsv(
@@ -41,7 +45,7 @@ public class MultiColumnCsvSort
         List<List<String>> lines = new ArrayList<List<String>>();
 
         // Skip header
-        String line = reader.readLine();
+        String line;
 
         while (true)
         {
@@ -63,6 +67,41 @@ public class MultiColumnCsvSort
         Writer writer = new OutputStreamWriter(outputStream);
         for (List<String> list : lines)
         {
+            for (int i = 0; i < list.size(); i++)
+            {
+                writer.write(list.get(i));
+                if (i < list.size() - 1)
+                {
+                    writer.write(COLUMN_SEPARATOR);
+                }
+            }
+            writer.write("\n");
+        }
+        writer.close();
+
+    }
+
+    private static void writeDeDupedCsv(
+        List<List<String>> lines, OutputStream outputStream) 
+        throws IOException
+    {
+        Writer writer = new OutputStreamWriter(outputStream);
+
+        for(int x = 1; x < lines.size(); x++){
+            
+            List<String> currentLine = lines.get(x);
+            List<String> previousLine = lines.get(x - 1);
+
+            if(currentLine.get(0).equals(previousLine.get(0))){
+                lines.remove(x - 1);
+                x = x - 1;
+            }
+
+        }
+
+        for (List<String> list : lines){
+
+
             for (int i = 0; i < list.size(); i++)
             {
                 writer.write(list.get(i));

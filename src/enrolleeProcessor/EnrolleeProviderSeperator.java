@@ -42,7 +42,6 @@ public class EnrolleeProviderSeperator {
             }
 
         }
-
         
         for(String provider : distinctProviderNames){
 
@@ -82,10 +81,12 @@ public class EnrolleeProviderSeperator {
             pw.flush();
             pw.close();
 
+           
+            //do first sort by userID first, then by version so that we can dedupe by userID
+            new MultiColumnCsvSort(providerFileName, true, 0, 3);
             
-            MultiColumnCsvSort s = new MultiColumnCsvSort(providerFileName, 0);
-            
-            
+            //finished deduping now, do final sort by last name, first name
+            new MultiColumnCsvSort(providerFileName, false, 2, 1);
 
                 
         }

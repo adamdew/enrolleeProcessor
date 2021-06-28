@@ -23,14 +23,13 @@ public class Procedure {
         try {
             this.seperateEnrollees();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         
     }
     
 
-    public void readCSV(){
+    private void readCSV(){
         CsvReader r = new CsvReader("input.csv");
         this.setAllData(r.getRows());
     }
@@ -39,7 +38,7 @@ public class Procedure {
         this.abstractedData = data;
     }
 
-    public void initEnrollees(){
+    private void initEnrollees(){
         this.enrollees = new ArrayList<Enrollee>();
     }
 

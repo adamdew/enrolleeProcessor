@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 
 public class EnrolleeProviderSeperator {
 
-    List<Enrollee> enrollees;
-    List<List<Enrollee>> enrolleesSepByProvider;
+    private List<Enrollee> enrollees;
+    
 
     public EnrolleeProviderSeperator(List<Enrollee> enrollees) throws Exception{
         this.setEnrollees(enrollees);
